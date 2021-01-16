@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import api.GurunaviAPIModel;
-
 import api.RestaurantInfo;
+import ViewModel.RandomlyChooseViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,13 +19,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         api.GurunaviAPIModel api = new api.GurunaviAPIModel();
+        ViewModel.RandomlyChooseViewModel random = new RandomlyChooseViewModel();
 
 
+        TextView nameView = (TextView) findViewById(R.id.name);
+
+        // テキストビューのテキストを設定します
+        nameView.setText("テキスト1");
 
         Button button = this.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                nameView.setText("change");
+
+
                 Thread t = new GurunaviAPIModel();
                 t.start();
                 System.out.println("joinを始めます");
@@ -34,14 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 System.out.println("joinが終わりました");
-                System.out.println(RestaurantInfo.id);
-                System.out.println(RestaurantInfo.name);
-                System.out.println(RestaurantInfo.latitude);
-                System.out.println(RestaurantInfo.longitude);
-                System.out.println(RestaurantInfo.url);
-                System.out.println(RestaurantInfo.addres);
-                System.out.println(RestaurantInfo.tel);
-                System.out.println(RestaurantInfo.opentime);
+
+                String[] suggest = random.Introduction();
+                for(int output = 0; output < suggest.length; output++){
+                    System.out.println(suggest[output]);
+                }
             }
         });
     }

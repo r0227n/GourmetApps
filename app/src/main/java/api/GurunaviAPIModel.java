@@ -49,6 +49,9 @@ public class GurunaviAPIModel extends Thread {
                 final InputStreamReader inReader = new InputStreamReader(in, encoding);
                 final BufferedReader bufReader = new BufferedReader(inReader);
 
+
+                RestaurantInfo.init();  // グローバル変数を初期化
+
                 String line = null;
                 // 1行ずつテキストを読み込む
                 while((line = bufReader.readLine()) != null) {
@@ -68,14 +71,13 @@ public class GurunaviAPIModel extends Thread {
                     if(line.contains("\"url\":")){
                         RestaurantInfo.url += (line.substring(20, line.length() - 2) + ",");
                     }
-                    if(line.contains("\"addres\":")){
+                    if(line.contains("\"address\":")){
                         RestaurantInfo.addres += (line.substring(23, line.length() - 2) + ",");
                     }
                     if(line.contains("\"tel\":")){
                         RestaurantInfo.tel += (line.substring(20, line.length() - 2) + ",");
                     }
                     if(line.contains("\"opentime\":")){
-
                         RestaurantInfo.opentime += (line.substring(25, line.length() - 2) + ",");
                     }
                 }
@@ -86,4 +88,6 @@ public class GurunaviAPIModel extends Thread {
         }
         System.out.println("sleepを終わります" );
     }
+
+
 }
