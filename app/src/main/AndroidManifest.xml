@@ -23,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".result"></activity>>
+        <activity android:name=".search"></activity>>
     </application>
 
 </manifest>
