@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.content.Intent;
 
 import api.GurunaviAPIModel;
+import ViewModel.RandomlyChooseViewModel;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button segue = this.findViewById(R.id.segue);
+        segue.setText("お店を探す");
         segue.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -33,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                 }
                 System.out.println("joinが終わりました");
+
+                ViewModel.RandomlyChooseViewModel random = new RandomlyChooseViewModel();
+                String[] suggest = random.Introduction();
+                ViewInfo.name = suggest[1];
+                ViewInfo.url = suggest[4];
+                ViewInfo.addres = suggest[5];
+                ViewInfo.tel = suggest[6];
+                ViewInfo.opentime = suggest[7];
 
                 // 「<activity android:name=".result"></activity>>」をAndroidManifest.xmlに書く
                 Intent intent = new Intent(MainActivity.this, result.class);

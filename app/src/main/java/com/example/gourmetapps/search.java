@@ -18,10 +18,11 @@ public class search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
         WebView myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.loadUrl("https://qiita.com/s-yoshiki/items/508870dfccfb237d72fd");
+        myWebView.loadUrl(ViewInfo.url);
 
 
         Button back = this.findViewById(R.id.backResult);
+        back.setText("検索結果一覧に戻る");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

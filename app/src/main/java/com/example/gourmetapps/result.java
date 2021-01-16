@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import ViewModel.RandomlyChooseViewModel;
+
 
 public class result extends AppCompatActivity {
 
@@ -18,33 +18,27 @@ public class result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
 
-        ViewModel.RandomlyChooseViewModel random = new RandomlyChooseViewModel();
+
+
 
         // TextViewを取得
         TextView nameTV = (TextView) findViewById(R.id.name);
-        TextView urlTV = (TextView) findViewById(R.id.url);
         TextView addresTV = (TextView) findViewById(R.id.addres);
         TextView telTV = (TextView) findViewById(R.id.tel);
         TextView opentimeTV = (TextView) findViewById(R.id.opentime);
 
 
-        String[] suggest = random.Introduction();
 
         // TextViewの値を更新
-        nameTV.setText(suggest[1]);
-        urlTV.setText(suggest[4]);
-        addresTV.setText(suggest[5]);
-        telTV.setText(suggest[6]);
-        opentimeTV.setText(suggest[7]);
+        nameTV.setText(ViewInfo.name);
+        addresTV.setText(ViewInfo.addres);
+        telTV.setText(ViewInfo.tel);
+        opentimeTV.setText(ViewInfo.opentime);
 
-        nameTV.setText(suggest[1]);
-        urlTV.setText(suggest[4]);
-        addresTV.setText(suggest[5]);
-        telTV.setText(suggest[6]);
-        opentimeTV.setText(suggest[7]);
 
 
         Button search = this.findViewById(R.id.search);
+        search.setText("Webサイトへ");
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +48,7 @@ public class result extends AppCompatActivity {
         });
 
         Button back = this.findViewById(R.id.backHome);
+        back.setText("ホーム画面に戻る");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
