@@ -22,19 +22,25 @@ public class MainActivity extends AppCompatActivity {
         ViewModel.RandomlyChooseViewModel random = new RandomlyChooseViewModel();
 
 
-        TextView nameView = (TextView) findViewById(R.id.name);
+        // TextViewを取得
+        TextView nameTV = (TextView) findViewById(R.id.name);
+        TextView urlTV = (TextView) findViewById(R.id.url);
+        TextView addresTV = (TextView) findViewById(R.id.addres);
+        TextView telTV = (TextView) findViewById(R.id.tel);
+        TextView opentimeTV = (TextView) findViewById(R.id.opentime);
 
-        // テキストビューのテキストを設定します
-        nameView.setText("テキスト1");
+
+        // TextViewの初期値を設定します
+        nameTV.setText("店舗名");
+        urlTV.setText("URL");
+        addresTV.setText("アドレス");
+        telTV.setText("電話番号");
+        opentimeTV.setText("開店時間");
 
         Button button = this.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                nameView.setText("change");
-
-
                 Thread t = new GurunaviAPIModel();
                 t.start();
                 System.out.println("joinを始めます");
@@ -46,9 +52,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("joinが終わりました");
 
                 String[] suggest = random.Introduction();
-                for(int output = 0; output < suggest.length; output++){
-                    System.out.println(suggest[output]);
-                }
+
+                // TextViewの値を更新
+                nameTV.setText(suggest[1]);
+                urlTV.setText(suggest[4]);
+                addresTV.setText(suggest[5]);
+                telTV.setText(suggest[6]);
+                opentimeTV.setText(suggest[7]);
+
             }
         });
     }
